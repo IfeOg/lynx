@@ -15,15 +15,18 @@ import org.apache.kafka.common.serialization.StringSerializer;
 public class SqliteTest {
 	
 	public static void main(String[] args ) {
-		String jdbcUrl = "jdbc:sqlite:C:\\Users\\brain\\eclipse-workspace\\database-project\\sqlite\\Test.db";
+		String jdbcUrl = "jdbc:sqlite:C:\\Users\\brain\\eclipse-workspace\\database-project\\sqlite\\marketing_campaign.db";
 		try {
 			Connection connection = DriverManager.getConnection(jdbcUrl);
-			String sql = "SELECT * FROM test";
+			String sql = "SELECT * FROM marketing_campaign";
 			Statement statement = connection.createStatement();
 			ResultSet result = statement.executeQuery(sql);
 			
 			while (result.next()) {
-				String crypto = result.getString("ID");
+				
+				String customer = result.getString("ID") +" | " + result.getString("Marital_Status") +" | " + result.getString("Education") +" | " 
+								  + result.getString("Income") +" | " +  result.getString("Year_Birth");
+				
 				
 				String bootstrapServers = "127.0.0.1:9092";
 				Properties properties= new Properties();
@@ -37,11 +40,15 @@ public class SqliteTest {
 				KafkaProducer<String, String> producer= new KafkaProducer <String, String>(properties);
 				
 				//Create a producer record
-				ProducerRecord <String, String> record = new ProducerRecord<String, String> ("my_topic", crypto);
-				System.out.println(crypto);
+			
+				ProducerRecord <String, String> record = new ProducerRecord<String, String> ("my_topic","customer", customer);
+				
+				
+				//System.out.println(education + " | " + income);
 				
 				//Send data
 				producer.send(record);
+				
 				
 				//flush data
 				producer.flush();

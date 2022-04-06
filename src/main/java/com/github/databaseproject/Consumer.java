@@ -42,10 +42,16 @@ public class Consumer {
 			ConsumerRecords<String, String> records = consumer.poll((Duration.ofMillis(100)));
 			
 			for (ConsumerRecord<String, String> record : records) {
+				if (record.value().contains("Married")) {
 				logger.info("Key: " + record.key() + ", Value: " +record.value());
-				System.out.println("message received");
-				logger.info("Partition: " + record.partition() + ", Offset: " +record.offset());
+				}
+				//System.out.println("message received");
+				
+				//logger.info("Partition: " + record.partition() + ", Offset: " +record.offset());
 			}
+			
+			
+			consumer.close();
 		}
 	}
 	
