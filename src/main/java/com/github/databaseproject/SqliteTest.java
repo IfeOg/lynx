@@ -15,7 +15,7 @@ import org.apache.kafka.common.serialization.StringSerializer;
 public class SqliteTest {
 	
 	public static void main(String[] args ) {
-		String jdbcUrl = "jdbc:sqlite:/C:\\sqlite\\Test.db";
+		String jdbcUrl = "jdbc:sqlite:C:\\Users\\brain\\eclipse-workspace\\database-project\\sqlite\\Test.db";
 		try {
 			Connection connection = DriverManager.getConnection(jdbcUrl);
 			String sql = "SELECT * FROM test";
