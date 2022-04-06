@@ -24,8 +24,8 @@ public class SqliteTest {
 			
 			while (result.next()) {
 				
-				String customer = result.getString("ID") +" | " + result.getString("Marital_Status") +" | " + result.getString("Education") +" | " 
-								  + result.getString("Income") +" | " +  result.getString("Year_Birth");
+				String customer = result.getString("ID") +"," + result.getString("Marital_Status") +"," + result.getString("Education") +"," 
+								  + result.getString("Income") +"," +  result.getString("Year_Birth");
 				
 				
 				String bootstrapServers = "127.0.0.1:9092";

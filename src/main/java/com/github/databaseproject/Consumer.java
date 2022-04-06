@@ -37,13 +37,44 @@ public class Consumer {
 		KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(properties);
 		consumer.subscribe(Arrays.asList("my_topic"));
 		
+		String[] split;
 		//poll for new data
 		while(true) {
 			ConsumerRecords<String, String> records = consumer.poll((Duration.ofMillis(100)));
 			
+			
+			
 			for (ConsumerRecord<String, String> record : records) {
-				if (record.value().contains("Married")) {
-				logger.info("Key: " + record.key() + ", Value: " +record.value());
+				
+				
+				int wines;
+				int fruit;
+				int meat;
+				int fish;
+				int sweet;
+				int gold;
+				String MaritalStatus;
+				int id;
+				
+				
+				for (int i = 0; i <= 5; i++) {
+					
+					
+					split =  record.value().split(",");
+					System.out.print(split[0] + " ");
+					System.out.print(split[1] + " ");
+					System.out.print(split[2] + " ");
+					System.out.print(split[3] + " ");
+					System.out.print(split[4] + "\n");
+					id = Integer.valueOf(split[i]);
+				}
+				
+				
+				
+				
+				
+				//if (record.value().contains("Single")) {
+				//logger.info("Key: " + record.key() + ", Value: " +record.value());
 				}
 				//System.out.println("message received");
 				
@@ -51,8 +82,8 @@ public class Consumer {
 			}
 			
 			
-			consumer.close();
+			
 		}
-	}
-	
 }
+
+
