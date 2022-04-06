@@ -13,9 +13,9 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringSerializer;
 
 public class SqliteTest {
-	
+
 	public static void main(String[] args ) {
-		String jdbcUrl = "jdbc:sqlite:C:\\Users\\brain\\eclipse-workspace\\database-project\\sqlite\\marketing_campaign.db";
+		String jdbcUrl = "jdbc:sqlite:/C:\\lynx\\marketing_campaign.db";
 		try {
 			Connection connection = DriverManager.getConnection(jdbcUrl);
 			String sql = "SELECT * FROM marketing_campaign";
@@ -25,7 +25,9 @@ public class SqliteTest {
 			while (result.next()) {
 				
 				String customer = result.getString("ID") +"," + result.getString("Marital_Status") +"," + result.getString("Education") +"," 
-								  + result.getString("Income") +"," +  result.getString("Year_Birth");
+								  + result.getString("Income") +"," +  result.getString("Year_Birth") + "," + result.getString("MntWines") +"," 
+								  + result.getString("MntFruits") +"," +  result.getString("MntMeatProducts") + "," + result.getString("MntFishProducts") +","
+								  + result.getString("MntSweetProducts") +"," +  result.getString("MntGoldProds");
 				
 				
 				String bootstrapServers = "127.0.0.1:9092";

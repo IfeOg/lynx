@@ -3,6 +3,7 @@
   <groupId>com.new.databaseproject</groupId>
   <artifactId>database-project</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+    
  
  <dependencies>
 	<dependency>
